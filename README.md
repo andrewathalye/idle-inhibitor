@@ -22,7 +22,7 @@ Nix users can download https://www.github.com/andrewathalye/nix-ada first and us
 Development
 -----------
 ```
-nix-shell # Or manually install dependencies
-ninja generate
-gprbuild
+$ nix-shell # Or manually install dependencies
+$ ninja generate
+$ gprbuild
 ```
