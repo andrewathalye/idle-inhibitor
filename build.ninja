@@ -1,0 +1,30 @@
+# Rules
+rule gprbuild
+   command = gprbuild -P$project
+
+rule gprinstall
+   command = gprinstall -P$project -p --mode=usage --prefix="$$prefix"
+
+rule generate
+   command = wayland_ada_scanner $in $out
+
+rule cleaner
+   command = rm -r generated obj idle_inhibitor
+
+rule strip
+   command = strip $in
+
+# Concrete
+build generated: generate protocols/idle-inhibit-unstable-v1.xml
+build idle_inhibitor: gprbuild generated
+   project = idle_inhibitor
+build strip_idle_inhibitor: strip idle_inhibitor
+
+# Abstract
+build clean: cleaner
+build generate: phony generated
+build strip: phony strip_idle_inhibitor
+build install: gprinstall strip
+   project = idle_inhibitor
+
+default strip

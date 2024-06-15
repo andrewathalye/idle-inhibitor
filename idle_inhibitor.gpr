@@ -1,0 +1,15 @@
+with "wayland_client_ada.gpr";
+
+project Idle_Inhibitor is
+
+   for Exec_Dir use ".";
+   for Source_Dirs use ("src", "generated");
+   for Object_Dir use "obj";
+   for Main use ("idle_inhibitor.adb");
+
+   package Compiler is
+      for Default_Switches ("Ada") use ("-O2");
+   end Compiler;
+
+end Idle_Inhibitor;
+
