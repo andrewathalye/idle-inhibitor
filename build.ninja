@@ -16,7 +16,7 @@ rule strip
 
 # Concrete
 build generated: generate protocols/idle-inhibit-unstable-v1.xml
-build idle_inhibitor: gprbuild generated
+build idle_inhibitor: gprbuild generated src
    project = idle_inhibitor
 build strip_idle_inhibitor: strip idle_inhibitor
 

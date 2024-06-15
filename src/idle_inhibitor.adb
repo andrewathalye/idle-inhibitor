@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
-with Ada.Environment_Variables;
+with Ada.Command_Line;
 
 with Wayland.Protocols.Client; use Wayland.Protocols.Client;
 with Wayland.Protocols.Idle_Inhibit_Unstable_V1;
@@ -16,6 +16,20 @@ procedure Idle_Inhibitor is
    The_Surface   : Surface;
    The_Inhibitor : Idle_Inhibitor_V1;
 begin
+   if Ada.Command_Line.Argument_Count /= 1 then
+      Ada.Text_IO.Put_Line
+        ("Usage: " & Ada.Command_Line.Command_Name &
+         " [path to control fifo].");
+      Ada.Text_IO.Put_Line
+        ("Write Y or N to the control fifo to activate and deactivate the inhibitor.");
+      Ada.Text_IO.Put_Line
+        ("This program will return the text " & ASCII.Quotation & "activated" &
+         ASCII.Quotation & " or " & ASCII.Quotation & "deactivated" &
+         ASCII.Quotation & ".");
+
+      return;
+   end if;
+
    The_Display.Connect;
 
    The_Display.Get_Registry (The_Registry);
@@ -36,21 +50,14 @@ begin
 
    The_Display.Roundtrip;
 
-   if not Ada.Environment_Variables.Exists ("HOME") then
-      raise Program_Error with "$HOME not defined";
-   end if;
-
    declare
-      Home      : constant String := Ada.Environment_Variables.Value ("HOME");
-      SF        : File_Type;
-      S         : Stream_Access;
-      Operation : Character;
+      Control_File : constant String := Ada.Command_Line.Argument (1);
+      SF           : File_Type;
+      S            : Stream_Access;
+      Operation    : Character;
    begin
       loop
-         Open
-           (File => SF,
-            Mode => In_File,
-            Name => Home & "/bin/eww/inhibitor_control");
+         Open (File => SF, Mode => In_File, Name => Control_File);
          S := Stream (SF);
 
          Character'Read (S, Operation);
