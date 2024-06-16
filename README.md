@@ -17,12 +17,16 @@ wayland-ada (wayland-ada-scanner and wayland-ada-client)
 (ada-language-server)
 ```
 
-Nix users can download https://www.github.com/andrewathalye/nix-ada first and use that with the `shell.nix` file to develop.
+Install
+-------
+```
+$ ninja
+$ prefix=<prefix> ninja install
+```
 
 Development
 -----------
 ```
-$ nix-shell # Or manually install dependencies
 $ ninja generate
 $ gprbuild
 ```

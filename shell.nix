@@ -1,20 +1,17 @@
-{
-  nix ? import ../nix-ada {}
+{ pkgs ? import <nixpkgs> {}
+, nix-ada ? import ../nix-ada/default.nix {}
 }:
 
-let
-   pkgs = nix.adapkgs;
-in
 pkgs.mkShell {
    nativeBuildInputs = [
-      pkgs.gprbuild  
-      pkgs.gnat
+      nix-ada.gprbuild  
+      nix-ada.gnat
       pkgs.ninja
-      nix.libadalang-tools
-      nix.wayland-ada-scanner
-      nix.gnatstudio
-      nix.ada-language-server
+      nix-ada.libadalang-tools
+      nix-ada.wayland-ada-scanner
+      nix-ada.gnatstudio
+      nix-ada.ada-language-server
    ];
       
-   buildInputs = [ nix.wayland-ada ];
+   buildInputs = [ nix-ada.wayland-ada ];
 }
