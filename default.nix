@@ -1,16 +1,18 @@
 { stdenv
+
 # Native
 , gnat
 , gprbuild
 , ninja
 , wayland-ada-scanner
+
 # Deps
 , wayland-ada
 }:
 
 stdenv.mkDerivation {
    pname = "idle-inhibitor";
-   version = "git";
+   version = "1.0";
    src = ./.;
    
    nativeBuildInputs = [
