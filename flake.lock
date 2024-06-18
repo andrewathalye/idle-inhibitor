@@ -2,20 +2,19 @@
   "nodes": {
     "nix-ada": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1718560183,
-        "narHash": "sha256-bM1oW9/oxqEHzWYrWqT3MSMvKuPROS67ZAv8oc+ruZA=",
+        "lastModified": 1718744298,
+        "narHash": "sha256-vXNqBwFpTBK6mr9sjpnjQirZEhm18NsctyRS+y33IGQ=",
         "owner": "andrewathalye",
         "repo": "nix-ada",
-        "rev": "d2ab7636832a24cf4dce29cbd495ff446ae37b43",
+        "rev": "a0e8673d698f8311b568692e0263ad393f6d52ed",
         "type": "github"
       },
       "original": {
         "owner": "andrewathalye",
+        "ref": "v1.1",
         "repo": "nix-ada",
         "type": "github"
       }
@@ -38,8 +37,7 @@
     },
     "root": {
       "inputs": {
-        "nix-ada": "nix-ada",
-        "nixpkgs": "nixpkgs"
+        "nix-ada": "nix-ada"
       }
     }
   },

@@ -1,15 +1,7 @@
 {
-   inputs = {
-#      nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-      nixpkgs.url = "github:NixOS/nixpkgs?rev=cc54fb41d13736e92229c21627ea4f22199fee6b";
+   inputs.nix-ada.url = "github:andrewathalye/nix-ada/v1.1";
 
-      nix-ada = {
-         url = "github:andrewathalye/nix-ada";
-         inputs.nixpkgs.follows = "nixpkgs"; 
-      };
-   };
-
-   outputs = { self, nixpkgs, nix-ada }:
+   outputs = { self, nix-ada }:
    let
       nix-ada_s = nix-ada.packages.x86_64-linux;
    in
